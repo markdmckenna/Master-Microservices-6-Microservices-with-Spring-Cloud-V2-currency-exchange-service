@@ -22,15 +22,11 @@ public class CurrencyExchangeController {
 	@GetMapping("currency-exchange/from/{from}/to/{to}")
 	public CurrencyExchange retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
 		LOGGER.info("[IN]CurrencyExchangeController - retrieveExchangeValue - from: {} - to: {}", from, to);
-//		CurrencyExchange currencyExchange = new CurrencyExchange(100L, from, to, BigDecimal.valueOf(50));
 		String port = environment.getProperty("local.server.port");
-//		List<CurrencyExchange> currencyExchanges = currencyExchangeRepository.findAll();
-//		currencyExchange = currencyExchanges.stream()
-//				.filter(ce -> ce.getFrom().equals(from) && ce.getTo().equals(to))
-//				.findFirst().get();
 		CurrencyExchange currencyExchange = currencyExchangeRepository
 				.findByFromAndTo(from, to).orElseThrow(() -> new RuntimeException("Unable to find data for " + from + " " + to));
 		currencyExchange.setEnvirnoment(port);
+		LOGGER.info("[OUT]CurrencyExchangeController - retrieveExchangeValue - currencyExchange: {}", currencyExchange);
 		return currencyExchange;
 	}
 	
