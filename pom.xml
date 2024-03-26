@@ -102,8 +102,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
+						<name>markinho1888/mmv2-${project.artifactId}:${project.version}</name>
+<!--						<builder>paketobuildpacks/builder-jammy-base:latest</builder>-->
 					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
